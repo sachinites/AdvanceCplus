@@ -34,7 +34,6 @@ using namespace std;
 #include <string>
 #include <iostream>
 #include "Clist.h"
-#include "GenIt.h"
 
 class Person{
 
@@ -97,5 +96,10 @@ main(int argc, char **argv){
     list->add(&node3);
     list->print_list();
 
+    /*Iterate list using Data structure*/
+    for(Clist<Person>::citerator it = list->begin(); it != list->end(); it++){
+        Person *person = it.GET_DATA();
+        cout << "node name " << person->name << endl;
+    }
     return 0;
 }

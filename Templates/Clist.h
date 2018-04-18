@@ -33,6 +33,13 @@
 #ifndef __CLIST__
 #define __CLIST__
 
+/*Steps :
+ * 1. Create a Template class and implement all functionalities which needs to be implemented
+ * 2. Create the iterator as inner class 
+ * 3. implement ==, !=, GET_DATA(), ++, -- operators in the inner class
+ * 4. implement begin() and end() in outer class whose trtuen type is iterator
+ * 5. Now you can use the iterator
+ * */
 template <class T>
 class Clistnode{
 
@@ -58,6 +65,42 @@ class Clist{
         void print_list();
         /*Callbacks registeration fn*/
         void register_compare_callback(int (*compare_fn)(T *, T *));
+
+        /* Iterator support*/
+        /* Now we will going to implement Iterator over this Clist Data structure
+         * This Iterator is inline with STL like Iterators*/
+
+        /*Create citerator as inner class*/
+        class citerator {
+            private:
+                /*Iterator is an abstraction over pointer*/
+                Clistnode<T> *ptr;             
+            public:
+              citerator(Clistnode<T> *ptr){
+                  this->ptr = ptr;
+              }
+              T *GET_DATA(){
+                return this->ptr->data;
+              }
+              /*pre increment*/
+              citerator operator++(int){
+                ptr = ptr->next;
+                return *this;            
+              }
+              bool operator==(citerator ptr){
+                return ptr.ptr == this->ptr;
+              }
+              bool operator!=(citerator ptr){
+                return ptr.ptr != this->ptr;
+              }
+        };
+
+        citerator begin(){
+            return citerator(head);
+        }
+        citerator end(){
+            return citerator(NULL);
+        }
 };
 
 
