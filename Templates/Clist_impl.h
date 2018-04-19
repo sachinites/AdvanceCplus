@@ -114,14 +114,14 @@ void Clist<T>::register_compare_callback(int (*compare_fn)(T *, T *)){
     this->compare_fn = compare_fn;
 }
 
-#if 0
+#if 1 
 template <class T>
-Clist<T>::citerator Clist<T>::citerator::begin(){
+typename Clist<T>::citerator Clist<T>::begin(){
     return Clist<T>::citerator(head);
 }
 
 template <class T>
-Clist<T>::citerator Clist<T>::citerator::end(){
+typename Clist<T>::citerator Clist<T>::end(){
     return Clist<T>::citerator(NULL);
 }
 #endif

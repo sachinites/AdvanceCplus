@@ -94,13 +94,17 @@ class Clist{
                 return ptr.ptr != this->ptr;
               }
         };
-
+        
+        citerator begin();
+        citerator end();
+#if 0
         citerator begin(){
             return citerator(head);
         }
         citerator end(){
             return citerator(NULL);
         }
+#endif
 };
 
 
