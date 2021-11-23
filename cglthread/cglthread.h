@@ -45,6 +45,7 @@ class CGLThread{
         void cglthread_add_next(CGLThread *new_cglthread);
         void cglthread_add_before(CGLThread *new_cglthread);
         void remove_cglthread();
+        CGLThread<T>* get_embedded_address();
         void set_object(T *object_ptr);
         T *get_object();
         CGLThread();
@@ -70,6 +71,12 @@ class CGLThread{
                 }
                 bool operator!=(citerator curr){
                     return curr.ptr != ptr;
+                }
+                T* operator*() {
+                    return GET_DATA();
+                }
+                CGLThread<T>* get_embedded_address() {
+                    return ptr;
                 }
         };
          

@@ -68,7 +68,13 @@ main(int argc, char **argv){
     base_cgl_thread.cglthread_add_next(&per4->cgl_thread);
    
     for(CGLThread<Person>::citerator it = base_cgl_thread.begin(); it != base_cgl_thread.end(); it++){
-        Person *person  = it.GET_DATA();
+        Person *person  = *it; 
+        cout << "Person name = " << person->name << endl;
+    }
+    
+    for(CGLThread<Person>::citerator it = base_cgl_thread.begin(); it != base_cgl_thread.end(); it++){
+       CGLThread<Person> *cgl_thread  =  it.get_embedded_address();
+       Person *person = (Person *) ((unsigned char *)(cgl_thread) - offsetof (Person, cgl_thread)); 
         cout << "Person name = " << person->name << endl;
     }
     return 0;

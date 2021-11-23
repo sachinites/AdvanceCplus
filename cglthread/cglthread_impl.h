@@ -128,4 +128,3 @@ typename CGLThread<T>::citerator
 CGLThread<T>::end(){
     return citerator(NULL);
 }
-
